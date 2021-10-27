@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.data.rest.core.config.Projection;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,9 +66,12 @@ class Produit {
 }
 @RepositoryRestResource
 interface ProduitRepository extends JpaRepository<Produit,Long> {
-// cette methode par default fonctionne avec localhost:8082/produits/search/findByNameContains?name=HP
+
+   // Cette methode fonctionne avec localhost:8082/produits/search/ByName?kw=HP&projection=web
    @RestResource(path = "/byName")
-    Page<Produit> findByNameContains(String name, Pageable pageable);
+   Page<Produit> findByNameContains(@Param("kw") String name, Pageable pageable);
+    // cette methode par default fonctionne avec localhost:8082/produits/search/findByNameContains?name=HP
+    // Page<Produit> findByNameContains(String name , Pageable pageable);
 }
 
 //On utilise les projection afin d'afficher juste les champs qu'on veut C un peux comme GraphQl
