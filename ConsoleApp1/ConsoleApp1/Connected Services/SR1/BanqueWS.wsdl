@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="BanqueWS" targetNamespace="http://ws/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8686/?xsd=1" namespace="http://ws/" />
+    </xsd:schema>
+  </types>
+  <message name="ConversionEuroToDH">
+    <part name="parameters" element="tns:ConversionEuroToDH" />
+  </message>
+  <message name="ConversionEuroToDHResponse">
+    <part name="parameters" element="tns:ConversionEuroToDHResponse" />
+  </message>
+  <message name="getCompte">
+    <part name="parameters" element="tns:getCompte" />
+  </message>
+  <message name="getCompteResponse">
+    <part name="parameters" element="tns:getCompteResponse" />
+  </message>
+  <message name="listComptes">
+    <part name="parameters" element="tns:listComptes" />
+  </message>
+  <message name="listComptesResponse">
+    <part name="parameters" element="tns:listComptesResponse" />
+  </message>
+  <portType name="BanqueService">
+    <operation name="ConversionEuroToDH">
+      <input wsam:Action="http://ws/BanqueService/ConversionEuroToDHRequest" message="tns:ConversionEuroToDH" />
+      <output wsam:Action="http://ws/BanqueService/ConversionEuroToDHResponse" message="tns:ConversionEuroToDHResponse" />
+    </operation>
+    <operation name="getCompte">
+      <input wsam:Action="http://ws/BanqueService/getCompteRequest" message="tns:getCompte" />
+      <output wsam:Action="http://ws/BanqueService/getCompteResponse" message="tns:getCompteResponse" />
+    </operation>
+    <operation name="listComptes">
+      <input wsam:Action="http://ws/BanqueService/listComptesRequest" message="tns:listComptes" />
+      <output wsam:Action="http://ws/BanqueService/listComptesResponse" message="tns:listComptesResponse" />
+    </operation>
+  </portType>
+  <binding name="BanqueServicePortBinding" type="tns:BanqueService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ConversionEuroToDH">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getCompte">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listComptes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="BanqueWS">
+    <port name="BanqueServicePort" binding="tns:BanqueServicePortBinding">
+      <soap:address location="http://localhost:8686/" />
+    </port>
+  </service>
+</definitions>
