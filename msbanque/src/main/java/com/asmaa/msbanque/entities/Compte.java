@@ -6,12 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 @XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class Compte {
