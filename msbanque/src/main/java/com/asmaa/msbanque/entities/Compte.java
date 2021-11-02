@@ -23,6 +23,8 @@ public class Compte {
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private TypeCompte type;
+    @ManyToOne
+    private Client client;
 }
 //et pour avoir un MS complet , il nous reste d'ajouter les connecteurs SOAP ou REST
 //pour les connecteurs REST , on a 3 techniques:
