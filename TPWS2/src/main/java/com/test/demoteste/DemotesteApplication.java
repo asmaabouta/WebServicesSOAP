@@ -74,7 +74,7 @@ interface ProduitRepository extends JpaRepository<Produit,Long> {
     // Page<Produit> findByNameContains(String name , Pageable pageable);
 }
 
-//On utilise les projection afin d'afficher juste les champs qu'on veut C un peux comme GraphQl
+//On utilise les projection afin d'afficher juste les champs qu'on veut C  comme GraphQl
 @Projection(name = "mobile",types = Produit.class)
 interface produitProjection{
     String getName();
