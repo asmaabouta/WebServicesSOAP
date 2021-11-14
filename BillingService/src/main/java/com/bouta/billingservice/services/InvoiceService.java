@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface InvoiceService {
      InvoiceRespenseDTO save(InvoicerRequestDTO invoicerRequestDTO);
+     List<InvoiceRespenseDTO> getAllInvoices();
      InvoiceRespenseDTO getInvoice(String invoiceId);
      List<InvoiceRespenseDTO> InvoiceByCustomerId(String customerId);
 }
