@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface InvoiceMapper {
- Invoice invoiceDTOToInvoice(InvoicerRequestDTO invoicerRequestDTO);
- InvoiceRespenseDTO invoiceToInvoiceDTO(Invoice invoice);
+ Invoice invoiceDtoToInvoice(InvoicerRequestDTO invoicerRequestDTO);
+ InvoiceRespenseDTO invoiceToInvoiceDto(Invoice invoice);
 
 }

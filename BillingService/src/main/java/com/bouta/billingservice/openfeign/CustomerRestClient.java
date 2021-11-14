@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-
+// le role de la dependances openFeign est de faciliter la communication entre les REST :permet de creer un client rest d'une maniere declarative
 //ceci est le nom qu'on a indiquer au service des customers
 @FeignClient(name = "CUSTOMER-SERVICE")
 public interface CustomerRestClient {
