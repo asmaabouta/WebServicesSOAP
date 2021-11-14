@@ -23,7 +23,7 @@ public class InvoiceRestController {
     public List<InvoiceRespenseDTO> getAllinvoices(){
         return invoiceService.getAllInvoices();
     }
-    @PostMapping
+    @PostMapping(path = "/invoices")
     public InvoiceRespenseDTO saveInvoice(@PathVariable InvoicerRequestDTO requestDTO){
         return invoiceService.save(requestDTO);
     }

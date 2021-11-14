@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -32,6 +33,9 @@ public class InvoiceServiceImpl implements InvoiceService {
     public InvoiceRespenseDTO save(InvoicerRequestDTO request) {
        Invoice invoice = invoiceMapper.invoiceDtoToInvoice(request);
        invoice.setId(UUID.randomUUID().toString());
+       invoice.setDate(new Date());
+       // Now we're going to verify the existence of the csutomer (verification de l'integrité référentielle Invoice/Customer)
+
        Invoice savedInvoice=invoiceRepository.save(invoice);
        InvoiceRespenseDTO respense=invoiceMapper.invoiceToInvoiceDto(savedInvoice);
        return  respense;
