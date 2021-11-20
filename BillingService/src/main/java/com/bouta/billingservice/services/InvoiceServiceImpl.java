@@ -9,7 +9,6 @@ import com.bouta.billingservice.openfeign.CustomerRestClient;
 import com.bouta.billingservice.repositories.InvoiceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class InvoiceServiceImpl implements InvoiceService {
+
     private InvoiceRepository invoiceRepository;
     private InvoiceMapper invoiceMapper;
     private CustomerRestClient customerRestClient;
@@ -44,11 +44,12 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceRespenseDTO> getAllInvoices() {
         List<Invoice> invoices=invoiceRepository.findAll();
-        return invoices
-                .stream()
-                .map(invoice -> invoiceMapper.invoiceToInvoiceDto(invoice))
-                .collect(Collectors.toList());
+        return invoices.
+                stream().
+                map(inv->invoiceMapper.invoiceToInvoiceDto(inv)).
+                collect(Collectors.toList());
     }
+
 
     @Override
     public InvoiceRespenseDTO getInvoice(String invoiceId) {
@@ -66,4 +67,6 @@ public class InvoiceServiceImpl implements InvoiceService {
             .map(invoice -> invoiceMapper.invoiceToInvoiceDto(invoice))
             .collect(Collectors.toList());
 }
+
+
 }
