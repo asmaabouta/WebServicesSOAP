@@ -24,7 +24,7 @@ public class BillingServiceApplication {
         return args -> {
             invoiceService.save(new InvoicerRequestDTO(BigDecimal.valueOf(1000),"C02"));
             invoiceService.save(new InvoicerRequestDTO(BigDecimal.valueOf(8900),"C02"));
-            invoiceService.save(new InvoicerRequestDTO(BigDecimal.valueOf(900),"C15"));
+           // invoiceService.save(new InvoicerRequestDTO(BigDecimal.valueOf(900),"C15"));
 
            invoiceService.getAllInvoices()
                     .forEach(invoice->{
