@@ -1,5 +1,6 @@
 package com.bouta.billingservice.services;
 
+import com.bouta.billingservice.CustomerNotFoundException;
 import com.bouta.billingservice.dto.InvoiceRespenseDTO;
 import com.bouta.billingservice.dto.InvoicerRequestDTO;
 import com.bouta.billingservice.entities.Customer;
@@ -31,6 +32,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public InvoiceRespenseDTO save(InvoicerRequestDTO request) {
+        // test de l 'integrité référentiel , si le customer existe
+        try {
+            Customer customer=customerRestClient.getCustomer(request.getCustomerID());
+        }catch (Exception e){
+           throw new CustomerNotFoundException("Customer n'existe pas ");
+        }
        Invoice invoice = invoiceMapper.invoiceDtoToInvoice(request);
        invoice.setId(UUID.randomUUID().toString());
        invoice.setDate(new Date());
@@ -64,7 +71,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceRespenseDTO> InvoiceByCustomerId(String customerId) {
     List<Invoice> invoices=invoiceRepository.findByCustomerID(customerId);
-    return invoices
+        for (Invoice invoice:invoices){
+            Customer customer=customerRestClient.getCustomer(invoice.getCustomerID());
+            invoice.setCustomer(customer);
+        }
+        return invoices
             .stream()
             .map(invoice -> invoiceMapper.invoiceToInvoiceDto(invoice))
             .collect(Collectors.toList());

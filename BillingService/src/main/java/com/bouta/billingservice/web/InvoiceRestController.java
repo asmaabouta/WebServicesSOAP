@@ -29,10 +29,14 @@ public class InvoiceRestController {
     public InvoiceRespenseDTO getInvoice(@PathVariable(name = "id") String invoiceId){
         return invoiceService.getInvoice(invoiceId);
     }
-    @GetMapping(path = "/invoicesByCustomer/{customerId}")
+    @GetMapping(path = "/invoicesByCustomerId/{customerId}")
     public List<InvoiceRespenseDTO> InvoiceByCustomerId(@PathVariable String customerId){
         return invoiceService.InvoiceByCustomerId(customerId);
     }
-
+    // cette fct permet de faire appel
+    @ExceptionHandler(Exception.class)
+    public String exceptionHandler(Exception e){
+        return e.getMessage();
+    }
 }
 
