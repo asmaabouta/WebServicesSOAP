@@ -3,6 +3,8 @@ package com.bouta.billingservice.web;
 import com.bouta.billingservice.dto.InvoiceRespenseDTO;
 import com.bouta.billingservice.dto.InvoicerRequestDTO;
 import com.bouta.billingservice.services.InvoiceService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +37,9 @@ public class InvoiceRestController {
     }
     // cette fct permet de faire appel
     @ExceptionHandler(Exception.class)
-    public String exceptionHandler(Exception e){
-        return e.getMessage();
+    public ResponseEntity<String> exceptionHandler(Exception e){
+
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

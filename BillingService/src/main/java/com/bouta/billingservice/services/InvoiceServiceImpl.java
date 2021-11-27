@@ -32,19 +32,21 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public InvoiceRespenseDTO save(InvoicerRequestDTO request) {
+        // Now we're going to verify the existence of the csutomer (verification de l'integrité référentielle Invoice/Customer)
         // test de l 'integrité référentiel , si le customer existe
+        Customer customer= null;
         try {
-            Customer customer=customerRestClient.getCustomer(request.getCustomerID());
+           customer=customerRestClient.getCustomer(request.getCustomerID());
         }catch (Exception e){
            throw new CustomerNotFoundException("Customer n'existe pas ");
         }
        Invoice invoice = invoiceMapper.invoiceDtoToInvoice(request);
        invoice.setId(UUID.randomUUID().toString());
        invoice.setDate(new Date());
-       // Now we're going to verify the existence of the csutomer (verification de l'integrité référentielle Invoice/Customer)
 
        Invoice savedInvoice=invoiceRepository.save(invoice);
        InvoiceRespenseDTO respense=invoiceMapper.invoiceToInvoiceDto(savedInvoice);
+      savedInvoice.setCustomer(customer);
        return  respense;
     }
 
