@@ -6,8 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -18,8 +20,10 @@ public class Invoice {
     private Date date;
     //montant du facture
     private BigDecimal amount;
-    private String customerID;
     //ce attribut n'est pas persistent , JPA devrai l'ignorer puisque l'entity jpa customer se trouve dans un autre service
+    @Transient @OneToMany(mappedBy = "bill")
+    private Collection<ProductItem> productItems;
+    private String customerID;
     @Transient
     private Customer customer;
 }
