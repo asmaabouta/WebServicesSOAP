@@ -20,8 +20,7 @@ public class Invoice {
     private Date date;
     //montant du facture
     private BigDecimal amount;
-    //ce attribut n'est pas persistent , JPA devrai l'ignorer puisque l'entity jpa customer se trouve dans un autre service
-    @Transient @OneToMany(mappedBy = "bill")
+    @OneToMany(mappedBy = "invoice")
     private Collection<ProductItem> productItems;
     private String customerID;
     @Transient

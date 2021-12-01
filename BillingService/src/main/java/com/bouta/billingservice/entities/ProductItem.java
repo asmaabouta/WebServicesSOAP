@@ -9,11 +9,16 @@ import javax.persistence.*;
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class ProductItem {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private String id;
     @Transient
-    private  Product product; private Long productId;
+    private Product product;
+    private String productId;
+    private double price;
+    private double quantity;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Invoice invoice;
+    @Transient
+    private String name;
 }
