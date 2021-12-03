@@ -49,34 +49,31 @@ public class BillingServiceApplication {
                     });
 
             //PagedModel<Product> productPagedModel=productItemRestClient.pageProducts(0,20);
-            Product p=productItemRestClient.getProductById("SASAS");
+            Product p=productItemRestClient.getProductById("DX21QDHI32JH");
             ProductItem productItem=new ProductItem();
             productItem.setId(p.getId());
             productItem.setPrice(p.getPrice());
+            productItem.setProductName(p.getName());
             productItem.setQuantity(new Random().nextInt(100));
             productItem.setProductId(p.getId());
             productItem.setInvoice(invoiceRepository.findById(inv.getId()).get());
             productItemRestResource.save(productItem);
-           /* productPagedModel.forEach(p->{
-                ProductItem productItem=new ProductItem();
-                productItem.setId(p.getId());
-                productItem.setPrice(p.getPrice());
-                productItem.setQuantity(new Random().nextInt(100));
-                productItem.setProductId(p.getId());
-                productItem.setInvoice(invoiceRepository.findById(inv.getId()).get());
-                productItemRestResource.save(productItem);
-            });*/
-        };
-    }
 
 
-    @Bean
-    CommandLineRunner start(
-            ProductItemRestClient productItemRestClient
-    ){
-        return args ->{
+            //2
+
+            Product p2=productItemRestClient.getProductById("OGHSM56GS8HD");
+            ProductItem productItem2=new ProductItem();
+            productItem2.setId(p2.getId());
+            productItem2.setPrice(p2.getPrice());
+            productItem2.setProductName(p2.getName());
+            productItem2.setQuantity(new Random().nextInt(200));
+            productItem2.setProductId(p2.getId());
+            productItem2.setInvoice(invoiceRepository.findById(inv.getId()).get());
+            productItemRestResource.save(productItem2);
 
         };
     }
+
 
 }

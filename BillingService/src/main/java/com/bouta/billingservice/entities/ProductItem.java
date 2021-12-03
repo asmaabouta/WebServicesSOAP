@@ -14,6 +14,7 @@ public class ProductItem {
     @Transient
     private Product product;
     private String productId;
+    private String productName;
     private double price;
     private double quantity;
     @ManyToOne
